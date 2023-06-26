@@ -16,7 +16,6 @@ export acct=$(aws sts get-caller-identity --query Account --output text)
 aws quicksight list-dashboards --aws-account-id $acct --query DashboardSummaryList[0].DashboardId --output text
 ```
 Save the dashboard ID in a notepad
-Get Cloud9 domain (Follow Step 3 in workshop studio to get Cloud9 access)
 ```
 export env=$(aws cloud9 list-environments --query environmentIds[0] --output text)
 echo "https://$(aws cloud9 describe-environments --environment-ids $env --query environments[0].id --output text).vfs.cloud9.us-east-1.amazonaws.com"
@@ -97,8 +96,10 @@ Update lambda function
 Example code for Lambda function in NodeJs
 https://github.com/amazon-archives/amazon-quicksight-embedding-sample/blob/master/QuickSightAuthentication/lambda/index.js
 
-Quicksigh SDK documentation
+Quicksight SDK documentation
 https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-quicksight/classes/generateembedurlforanonymoususercommand.html
+
+[lambda code solution](../index.js)
 
 ## Step 4: Embed Quicksight in Application
 Install embedding sdk
