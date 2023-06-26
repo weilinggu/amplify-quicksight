@@ -121,4 +121,4 @@ Instead of fetching embed URL from API Gateway, you can use API.get()
   }, [dashboardRef]);
 ```
 
-Make sure you add your cloud9 domain to Quicksight to allowed domain
+Make sure you add your amplify domain to Quicksight to allowed domain
