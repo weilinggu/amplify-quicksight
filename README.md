@@ -11,40 +11,68 @@ UI has changed a bit
 
 ## Step 2: Retrieve environment variables
 Get Quicksight Dashboard ID
-$ export acct=$(aws sts get-caller-identity --query Account --output text)
-$ aws quicksight list-dashboards --aws-account-id $acct --query DashboardSummaryList[0].DashboardId --output text
+```
+export acct=$(aws sts get-caller-identity --query Account --output text)
+aws quicksight list-dashboards --aws-account-id $acct --query DashboardSummaryList[0].DashboardId --output text
+```
 Save the dashboard ID in a notepad
 Get Cloud9 domain (Follow Step 3 in workshop studio to get Cloud9 access)
-$ export env=$(aws cloud9 list-environments --query environmentIds[0] --output text)
-$ echo "https://$(aws cloud9 describe-environments --environment-ids $env --query environments[0].id --output text).vfs.cloud9.us-east-1.amazonaws.com"
+```
+export env=$(aws cloud9 list-environments --query environmentIds[0] --output text)
+echo "https://$(aws cloud9 describe-environments --environment-ids $env --query environments[0].id --output text).vfs.cloud9.us-east-1.amazonaws.com"
+```
 Save domain link
 
 ## Step 3: Configure Amplify Rest API
 Add an API endpoint
-$ amplify add api
-Select REST
-Enter QuicksightAnonymousEmbed
-Enter /anonymous-embed
-provide a lambda name AnonymousEmbedFunction
-Select NodeJs
-Select Helloworld
-Select Yes for advanced settings
-Select No on access other resources, reocurring schedule, Lambda layer
-Select Yes on environment variable
-Enter DashboardId
-Enter [DashboardId fetched before]
-Select Add new environment variable 
-Enter DashboardRegion
-Enter [the region you are in, for example us-east-1]
-Select I\'m done
-Select n for adding secret value
-Select n for editing the function now
-Select n for restricting access
-Select n for adding another path
+```
+amplify add api
+```
+Select `REST`
+
+Enter `QuicksightAnonymousEmbed`
+
+Enter `/anonymous-embed`
+
+provide a lambda name `AnonymousEmbedFunction`
+
+Select `NodeJs`
+
+Select `Helloworld`
+
+Select `Yes` for advanced settings
+
+Select `No` on access other resources, reocurring schedule, Lambda layer
+
+Select `Yes` on environment variable
+
+Enter `DashboardId`
+
+Enter `[DashboardId fetched before]`
+
+Select `Add new environment variable`
+
+Enter `DashboardRegion`
+
+Enter `[the region you are in, for example us-east-1]`
+
+Select `I\'m done`
+
+Select `n` for adding secret value
+
+Select `n` for editing the function now
+
+Select `n` for restricting access
+
+Select `n` for adding another path
+
 
 Add IAM policy for the function to access Quicksight
-Open /RetailStore/amplify/backend/function/AnonymousEmbedFunction/custom-policies.json
+
+Open `/RetailStore/amplify/backend/function/AnonymousEmbedFunction/custom-policies.json`
+
 Replace the file with
+```
 [
   {
    "Action": [
@@ -57,10 +85,14 @@ Replace the file with
     "Effect": "Allow"
   }
 ]
-Enter Dashboard ID fetched earlier to replace <YOUR_DASHBOARD_ID>
+```
+Enter Dashboard ID fetched earlier to replace `<YOUR_DASHBOARD_ID>`
 
 Push API change to the Amplify Studio
-$amplify push
+```
+amplify push
+```
+Update lambda function
 
 Example code for Lambda function in NodeJs
 https://github.com/amazon-archives/amazon-quicksight-embedding-sample/blob/master/QuickSightAuthentication/lambda/index.js
@@ -70,7 +102,9 @@ https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-quicksight
 
 ## Step 4: Embed Quicksight in Application
 Install embedding sdk
+```
 npm i amazon-quicksight-embedding-sdk
+```
 Follow step 5 in the guide to embed Quicksight
 
 
