@@ -109,4 +109,17 @@ npm i amazon-quicksight-embedding-sdk
 ```
 Follow step 5 in the guide to embed Quicksight
 
+Instead of fetching embed URL from API Gateway, you can use API.get()
+```
+  useEffect(() => {
+    const getAPI = async () => {
+      const result = await API.get('QuicksightAnonymousEmbed',
+        '/anonymous-embed',
+        {});
+        embed(result.EmbedUrl)
+    }
+    getAPI()
+  }, [dashboardRef]);
+```
 
+Make sure you add your cloud9 domain to Quicksight to allowed domain
