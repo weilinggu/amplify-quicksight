@@ -87,10 +87,6 @@ Replace the file with
 ```
 Enter Dashboard ID fetched earlier to replace `<YOUR_DASHBOARD_ID>`
 
-Push API change to the Amplify Studio
-```
-amplify push
-```
 Update lambda function
 
 Example code for Lambda function in NodeJs
@@ -100,6 +96,11 @@ Quicksight SDK documentation
 https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-quicksight/classes/generateembedurlforanonymoususercommand.html
 
 [lambda code solution](../index.js)
+
+Push API change to the Amplify Studio
+```
+amplify push
+```
 
 ## Step 4: Embed Quicksight in Application
 Install embedding sdk
