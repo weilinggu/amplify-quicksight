@@ -22,7 +22,7 @@ const getDashboardURL = (accountId, dashboardId, dashboardArn) => {
         
         const command = new GenerateEmbedUrlForAnonymousUserCommand(getDashboardParams);
 
-        quicksightClient.send(command).then(result => resolve(result), err => console.log(err, err.stack))
+        quicksightClient.send(command).then(result => {console.log(result);resolve(result);}, err => console.log(err, err.stack))
     });
 }
 
@@ -52,8 +52,15 @@ const sendRes = (event, context, callback) => {
     const getDashboardEmbedUrlPromise = getDashboardURL(accountId, dashboardId, dashboardArn);
     getDashboardEmbedUrlPromise.then(function(result){
         const dashboardEmbedUrlResult = result;
-        if (dashboardEmbedUrlResult && dashboardEmbedUrlResult.statusCode === 200) {
-            callback(null, result);
+        console.log(result.statusCode)
+        if (dashboardEmbedUrlResult && dashboardEmbedUrlResult.Status === 200) {
+            callback(null, {
+                'statusCode': 200,
+                'headers': { 'Access-Control-Allow-Origin': '[YOURAMPLIFYDOMAIN]',
+                'Access-Control-Allow_methods': 'GET, OPTIONS',
+                'Content-Type': 'text/plain'},
+                'body': JSON.stringify(result)
+            })
         } else {
             console.log('getDashboardEmbedUrl failed');
         }
