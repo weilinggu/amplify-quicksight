@@ -23,7 +23,7 @@ echo "https://$(aws cloud9 describe-environments --environment-ids $env --query 
 Save domain link
 
 ## Step 3: Configure Amplify Rest API
-Add an API endpoint
+***Add an API endpoint***
 ```
 amplify add api
 ```
@@ -66,7 +66,7 @@ Select `n` for restricting access
 Select `n` for adding another path
 
 
-Add IAM policy for the function to access Quicksight
+***Add IAM policy for the function to access Quicksight***
 
 Open `/RetailStore/amplify/backend/function/AnonymousEmbedFunction/custom-policies.json`
 
@@ -87,7 +87,7 @@ Replace the file with
 ```
 Enter Dashboard ID fetched earlier to replace `<YOUR_DASHBOARD_ID>`
 
-Update lambda function
+***Update lambda function***
 
 Example code for Lambda function in NodeJs
 https://github.com/amazon-archives/amazon-quicksight-embedding-sample/blob/master/QuickSightAuthentication/lambda/index.js
@@ -97,7 +97,7 @@ https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-quicksight
 
 [lambda code solution](../index.js)
 
-Push API change to the Amplify Studio
+***Push API change to the Amplify Studio***
 ```
 amplify push
 ```
