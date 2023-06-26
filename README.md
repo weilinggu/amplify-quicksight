@@ -1,7 +1,6 @@
 # amplify-quicksight lab notes
 - navigation.js don't refresh after create categories, how to trigger that?
 ## Quicksight Embedding
-https://catalog.us-east-1.prod.workshops.aws/workshops/49c5e2b4-fc43-48e7-8316-e0759cb79d35
 Follow Environment Setup->Amazon Quicksight
 ### Step 1: Amazon Quicksight
 UI has changed a bit
